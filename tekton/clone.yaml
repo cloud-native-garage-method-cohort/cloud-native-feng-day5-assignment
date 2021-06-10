@@ -1,0 +1,19 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: buildah-build-my-repo
+spec:
+  taskRef:
+    name: git-clone
+    kind: ClusterTask
+  params:
+  - name: url
+    value: "https://github.com/cloud-native-garage-method-cohort/cloud-native-feng-day5-assignment.git"
+  - name: subdirectory
+    value: ""
+  - name: deleteExisting
+    value: "true"
+  workspaces:
+  - name: output
+    persistentVolumeClaim:
+      claimName: feng-pvc

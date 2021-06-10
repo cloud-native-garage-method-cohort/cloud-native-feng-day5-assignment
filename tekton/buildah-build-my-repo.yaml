@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1beta1
+kind: TaskRun
+metadata:
+  name: buildah-build-my-repo
+spec:
+  taskRef:
+    name: buildah
+  params:
+  - name: IMAGE
+    value: quay.io/fenglixa/buildah-assignment-image
+  workspaces:
+  - name: source
+    persistentVolumeClaim:
+      claimName: feng-pvc
